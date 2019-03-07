@@ -12,8 +12,8 @@ end
 
 def save_form_data_to_database
   @db = get_db
-  @db.execute 'INSERT INTO post (content)
-  VALUES (?)', [@content]
+  @db.execute 'INSERT INTO post (title, content)
+  VALUES (?, ?)', [@title, @content]
   @db.close
 end
 
@@ -23,11 +23,12 @@ before do
 end
 
 configure do
-	@db = get_db
+	@db = init_db
 	@db.execute 'CREATE TABLE IF NOT EXISTS
 	"post"
 	  (
 		"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+		"title"		TEXT,
 		"content"	TEXT
 		
 	  )'
@@ -47,6 +48,7 @@ get '/new' do
 end	
 
 post '/new' do
+	@title = params[:title]
 	@content = params[:content]
 
 

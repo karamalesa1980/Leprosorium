@@ -1,22 +1,19 @@
-<table class="table table-bordered">
-	<thead>
-	  <tr>
-	  	
-	    <th class="bg-primary"> Статья!  </th>
-	    
-	  </tr>
-	</thead>  
 
-<tbody>
-	<% @results.each do |row| %>
+	
+	
 
-	  <tr <%= "style='background-color: yellow; color: black;'" if row == @results.first %>>
-	  	
-	    <td><%= row['content'] %></td>
-	    
-	  </tr>
+	  
 
-	<% end %>
-</tbody>
+	
+<% @results.each do |row| %>
 
-</table>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= row['title'] %></h3>
+  </div>
+  <div class="panel-body">
+    <%= row['content'] %>
+  </div>
+</div>
+
+<% end %>
