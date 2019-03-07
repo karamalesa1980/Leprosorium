@@ -8,6 +8,6 @@ get '/' do
 end
 
 get '/new' do
-	erb "hello"
+	erb :new
 end	
 
