@@ -23,7 +23,7 @@ before do
 end
 
 configure do
-	@db = init_db
+	init_db
 	@db.execute 'CREATE TABLE IF NOT EXISTS
 	"post"
 	  (
