@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-def get_db
+def init_db
    @db =  SQLite3::Database.new 'test.sqlite3'
    @db.results_as_hash = true
   return @db
@@ -18,7 +18,7 @@ def save_form_data_to_database
 end
 
 before do
-  @db = get_db
+  init_db
   
 end
 
@@ -35,7 +35,11 @@ configure do
 end
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
+	@db = get_db
+
+    @results = @db.execute 'SELECT * FROM post ORDER BY id DESC'
+    @db.close
+	erb :index			
 end
 
 get '/new' do
