@@ -13,10 +13,10 @@ get '/new' do
 end	
 
 post '/new' do
-	@textarea = params[:textarea]
+	@content = params[:content]
 
 	f = File.open './public/text.txt', 'a'
-	f.write "Post: #{@textarea}\n"
+	f.write "Post: #{@content}\n"
 	f.close
 	erb :new
 
