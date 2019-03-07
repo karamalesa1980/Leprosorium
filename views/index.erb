@@ -1,0 +1,22 @@
+<table class="table table-bordered">
+	<thead>
+	  <tr>
+	  	
+	    <th class="bg-primary"> Статья!  </th>
+	    
+	  </tr>
+	</thead>  
+
+<tbody>
+	<% @results.each do |row| %>
+
+	  <tr <%= "style='background-color: yellow; color: black;'" if row == @results.first %>>
+	  	
+	    <td><%= row['content'] %></td>
+	    
+	  </tr>
+
+	<% end %>
+</tbody>
+
+</table>
