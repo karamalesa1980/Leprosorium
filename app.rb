@@ -11,7 +11,7 @@ def init_db
 end
 
 def save_form_data_to_database
-  @db = get_db
+  init_db
   @db.execute 'INSERT INTO post (title, content)
   VALUES (?, ?)', [@title, @content]
   @db.close
@@ -36,7 +36,7 @@ configure do
 end
 
 get '/' do
-	@db = get_db
+	init_db
 
     @results = @db.execute 'SELECT * FROM post ORDER BY id DESC'
     @db.close
