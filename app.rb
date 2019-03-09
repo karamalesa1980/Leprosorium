@@ -51,6 +51,23 @@ post '/new' do
 	@title = params[:title]
 	@content = params[:content]
 
+	hh = { 
+		   :title => "Введите заголовок",
+		   :content => "Введите текст"
+		    
+	}
+
+	@error = hh.select {|key,_| params[key] == ""}.values.join(",  ")
+	
+		
+	
+    
+	
+	
+	if @error != ""
+		return erb :new
+	end
+
 
     save_form_data_to_database
 	erb "<h4>Ваша статья отправлена!</h4>"
