@@ -14,8 +14,11 @@
   <div class="panel-body">
     <%= row['content'] %>
     <br>
+
     <br>
     <h5><strong> Дата создания: <%= row['datetime']%></strong></h5>
+    <br>
+    <a href="/post/<%= row['id'] %>">Оставить коментарий</a>
     
   </div>
 </div>
