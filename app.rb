@@ -12,8 +12,8 @@ end
 
 def save_form_data_to_database
   init_db
-  @db.execute 'INSERT INTO post (title, content)
-  VALUES (?, ?)', [@title, @content]
+  @db.execute 'INSERT INTO post (title, content, datetime)
+  VALUES (?, ?, datetime())', [@title, @content]
   @db.close
 end
 
@@ -29,8 +29,8 @@ configure do
 	  (
 		"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
 		"title"		TEXT,
-		"content"	TEXT
-		
+		"content"	TEXT,
+		"datetime"	DATE
 	  )'
 	  
 end
