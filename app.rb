@@ -51,6 +51,9 @@ post '/new' do
 	@title = params[:title]
 	@content = params[:content]
 
+
+	# Проверка введен ли текст в поля заголовок и тело статьи
+	# хеш вывода текста в случае ошибки
 	hh = { 
 		   :title => "Введите заголовок",
 		   :content => "Введите текст"
@@ -59,19 +62,21 @@ post '/new' do
 
 	@error = hh.select {|key,_| params[key] == ""}.values.join(",  ")
 	
-		
-	
-    
-	
-	
 	if @error != ""
 		return erb :new
 	end
-
+	# сохранение в базу данных
 
     save_form_data_to_database
-	erb "<h4>Ваша статья отправлена!</h4>"
-		
+	
+	# перенапровление на главную страницу	
+	redirect "/"
 
+end	
 
+get '/details/:post_id' do
+	post_id = params[:post_id]
+	results = @db.execute 'SELECT * FROM post where id = ?', [post_id]
+	@row = results[0]
+	erb :details
 end	
