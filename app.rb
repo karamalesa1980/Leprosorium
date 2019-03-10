@@ -107,7 +107,7 @@ post '/details/:post_id' do
 
 	save_comment_form_data_to_database
 
-	erb "#{@post_id},#{@content}"
+	redirect to('/details/' + @post_id)
 
 	
 end	
