@@ -12,10 +12,18 @@ end
 
 def save_form_data_to_database
   init_db
-  @db.execute 'INSERT INTO post (title, content, datetime, comment)
-  VALUES (?, ?, datetime(), ?)', [@title, @content, @comment]
+  @db.execute 'INSERT INTO post (title, content, datetime)
+  VALUES (?, ?, datetime(), ?)', [@title, @content]
   @db.close
 end
+
+def save_comment_form_data_to_database
+  init_db
+  @db.execute 'INSERT INTO comment (content, datetime, post_id)
+  VALUES (?, datetime(), ?)', [@content, @post_id]
+  @db.close
+end
+
 
 
 
@@ -34,6 +42,15 @@ configure do
 		"content"	TEXT,
 		"datetime"	DATE,
 		"comment"	TEXT
+	  )';
+	  @db.execute 'CREATE TABLE IF NOT EXISTS
+	"comment"
+	  (
+		"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+		"content"	TEXT,
+		"datetime"	DATE,
+		"post_id"   INTEGER
+		
 	  )'
 	  
 end
@@ -85,12 +102,12 @@ get '/details/:post_id' do
 end	
 
 post '/details/:post_id' do
-	post_id = params[:post_id]
-	@comment = params[:comment]
+	@post_id = params[:post_id]
+	@content = params[:content]
 
-	
+	save_comment_form_data_to_database
 
-	erb "#{post_id},#{@comment}"
+	erb "#{@post_id},#{@content}"
 
 	
 end	
