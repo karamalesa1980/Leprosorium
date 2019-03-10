@@ -1,12 +1,4 @@
 
-  
-  
-
-    
-
-  
-
-
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title"><%= @row['title'] %></h3>
@@ -17,9 +9,18 @@
 
     <br>
     <h5><strong> Дата создания: <%= @row['datetime']%></strong></h5>
-    <br>
-    
-    
+    <br>  
   </div>
 </div>
-<br>
+
+
+
+<form action="/details/<%= @row['id']%>" method="POST">
+
+  
+
+  
+  <textarea name="comment" class="form-control" rows="1" placeholder="Type post text hare"></textarea>
+  
+  <button type="submit" class="btn btn-primary">Добавить коментарий</button>
+</form>

@@ -12,10 +12,12 @@ end
 
 def save_form_data_to_database
   init_db
-  @db.execute 'INSERT INTO post (title, content, datetime)
-  VALUES (?, ?, datetime())', [@title, @content]
+  @db.execute 'INSERT INTO post (title, content, datetime, comment)
+  VALUES (?, ?, datetime(), ?)', [@title, @content, @comment]
   @db.close
 end
+
+
 
 before do
   init_db
@@ -30,7 +32,8 @@ configure do
 		"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
 		"title"		TEXT,
 		"content"	TEXT,
-		"datetime"	DATE
+		"datetime"	DATE,
+		"comment"	TEXT
 	  )'
 	  
 end
@@ -79,4 +82,15 @@ get '/details/:post_id' do
 	results = @db.execute 'SELECT * FROM post where id = ?', [post_id]
 	@row = results[0]
 	erb :details
+end	
+
+post '/details/:post_id' do
+	post_id = params[:post_id]
+	@comment = params[:comment]
+
+	
+
+	erb "#{post_id},#{@comment}"
+
+	
 end	
