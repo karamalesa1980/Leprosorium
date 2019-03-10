@@ -1,14 +1,16 @@
 
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= @row['title'] %></h3>
+    <h3 class="panel-title">Автор: <%= @row['title'] %></h3>
+    
+    <span style="font-size: 75%; color: #999"> Добавлен: <%= @row['datetime']%></span>
   </div>
   <div class="panel-body">
     <%= @row['content'] %>
     <br>
 
-    <br>
-    <h5> Дата создания: <%= @row['datetime']%></h5>
+    
+    
       
   </div>
 </div>
@@ -18,7 +20,7 @@
   
 
   
-  <textarea name="content" class="form-control" rows="2" placeholder="Type post text hare"></textarea>
+  <textarea name="content" class="form-control" rows="2" placeholder="Введите текст"></textarea>
   
   <button type="submit" class="btn btn-primary">Добавить коментарий</button>
 </form>

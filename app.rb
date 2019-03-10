@@ -13,7 +13,7 @@ end
 def save_form_data_to_database
   init_db
   @db.execute 'INSERT INTO post (title, content, datetime)
-  VALUES (?, ?, datetime(), ?)', [@title, @content]
+  VALUES (?, ?, datetime())', [@title, @content]
   @db.close
 end
 
@@ -75,7 +75,7 @@ post '/new' do
 	# Проверка введен ли текст в поля заголовок и тело статьи
 	# хеш вывода текста в случае ошибки
 	hh = { 
-		   :title => "Введите заголовок",
+		   :title => "Введите свое имя",
 		   :content => "Введите текст"
 		    
 	}
