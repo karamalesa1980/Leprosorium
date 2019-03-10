@@ -8,19 +8,30 @@
     <br>
 
     <br>
-    <h5><strong> Дата создания: <%= @row['datetime']%></strong></h5>
-    <br>  
+    <h5> Дата создания: <%= @row['datetime']%></h5>
+      
   </div>
 </div>
-
-
 
 <form action="/details/<%= @row['id']%>" method="POST">
 
   
 
   
-  <textarea name="content" class="form-control" rows="1" placeholder="Type post text hare"></textarea>
+  <textarea name="content" class="form-control" rows="2" placeholder="Type post text hare"></textarea>
   
   <button type="submit" class="btn btn-primary">Добавить коментарий</button>
 </form>
+
+<h4>Коментарии!</h4>
+<br>
+<%@comments.each do |comment| %>
+  <p>
+    <%= comment['content'] %>
+    <br>
+    <br>
+    <span style="font-size: 75%; color: #999"> Добавлен: <%= comment['datetime']%></span>
+  </p>
+  <hr>
+<%end %>
+
